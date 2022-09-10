@@ -2,11 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 
 module.exports = {
-
-  entry: './app/app.js',
+  entry: './app/App.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -41,10 +41,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'styles/[name].css',
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: './index.html', to: '../' },
-      ]
+    new HtmlWebpackPlugin({
+      template: "./index.html"
     }),
     // для доступа к переменной окружения process
     // https://stackoverflow.com/questions/65018431/webpack-5-uncaught-referenceerror-process-is-not-defined   

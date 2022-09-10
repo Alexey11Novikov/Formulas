@@ -3,7 +3,6 @@ import { Button, Grid } from "@material-ui/core";
 import { MainContext } from "./context/MainContext";
 import defFormula from './resource.json';
 
-
 export const Buttons = () => {
     const { setArrFormula } = useContext(MainContext);
     const [array, setArray] = useState(defFormula.formula);
@@ -15,6 +14,7 @@ export const Buttons = () => {
 
     const onCancel = () => {
         setArray(defFormula.formula);
+        setArrFormula(defFormula.formula);
     }
 
     return (
