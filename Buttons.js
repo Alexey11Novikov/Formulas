@@ -1,32 +1,43 @@
-import React from "react";
-import { Button } from "@material-ui/core";
+import React, { useState, useContext } from "react";
+import { Button, Grid } from "@material-ui/core";
+import { MainContext } from "./context/MainContext";
+import defFormula from './resource.json';
+
 
 export const Buttons = () => {
+    const { setArrFormula } = useContext(MainContext);
+    const [array, setArray] = useState(defFormula.formula);
 
     const addFormula = () => {
-        let obj = require("./resource.json");
-        
+        array.push("");
+        setArrFormula(array);
     }
 
     const onCancel = () => {
-
+        setArray(defFormula.formula);
     }
 
     return (
         <>
-            <div>
-                <Button variant="contained" onClick={onCancel}>
-                    Отмена
-                </Button>
-                <Button variant="contained" color="primary" disabled={true}>
-                    Сохранить
-                </Button>
-            </div>
-            <div>
-                <Button variant="contained" color="primary" onClick={addFormula}>
-                    Добавить формулу
-                </Button>
-            </div>
+            <Grid container>
+                <Grid item xs={2}>
+                    <Button variant="contained" onClick={onCancel}>
+                        Отмена
+                    </Button>
+                </Grid>
+                <Grid item xs={2}>
+                    <Button variant="contained" color="primary" disabled={true}>
+                        Сохранить
+                    </Button>
+                </Grid>
+            </Grid>
+            <Grid container>
+                <Grid item xs={6}>
+                    <Button variant="contained" color="primary" onClick={addFormula}>
+                        Добавить формулу
+                    </Button>
+                </Grid>
+            </Grid>
         </>
     )
 }
