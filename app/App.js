@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ModalAddFormula } from '../ModalAddFormula';
 import { Formula } from '../Formula';
 
 

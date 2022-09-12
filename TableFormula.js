@@ -15,20 +15,23 @@ import defFormula from './resource.json';
 
 
 export const TableFormula = () => {
-    const { arrFormula, setArrFormula } = useContext(MainContext);
-    const [open, setOpen] = useState(false)
+    const { arrFormula, setArrFormula, setChangeFormula } = useContext(MainContext);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         setArrFormula(defFormula.formula);
     }, []);
 
 
-    const onSettingFormula = () => {
+    const onSettingFormula = (value) => {
         setOpen(true);
+        setChangeFormula(value);
     }
 
-    const onDelete = () => {
-
+    const onDelete = (value) => {
+        const currentIndex = arrFormula.indexOf(value);
+        arrFormula.splice(currentIndex, 1);
+        setArrFormula(arrFormula);
     }
 
     return (
@@ -47,7 +50,6 @@ export const TableFormula = () => {
                         </TableCell>
                     </TableRow>
                 </TableHead>
-
                 <TableBody>
                     {arrFormula && arrFormula.map((item, index) => (
                         <TableRow
@@ -58,10 +60,10 @@ export const TableFormula = () => {
                                 {item}
                             </TableCell>
                             <TableCell align="center">
-                                <IconButton aria-label="delete" onClick={onDelete}>
+                                <IconButton aria-label="delete" onClick={() => onDelete(item)}>
                                     <DeleteIcon />
                                 </IconButton>
-                                <IconButton aria-label="setting" onClick={onSettingFormula}>
+                                <IconButton aria-label="setting" onClick={() => onSettingFormula(item)}>
                                     <SettingsIcon />
                                 </IconButton>
                             </TableCell>

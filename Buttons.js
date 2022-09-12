@@ -5,15 +5,14 @@ import defFormula from './resource.json';
 
 export const Buttons = () => {
     const { setArrFormula } = useContext(MainContext);
-    const [array, setArray] = useState(defFormula.formula);
+    let newArray = defFormula.formula;
 
     const addFormula = () => {
-        array.push("");
-        setArrFormula(array);
+        newArray.push("");
+        setArrFormula(newArray);
     }
 
     const onCancel = () => {
-        setArray(defFormula.formula);
         setArrFormula(defFormula.formula);
     }
 
